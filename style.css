@@ -88,3 +88,130 @@ footer a:hover{text-decoration:underline}
 .strip .stat{border-color:#fff}
 .strip .stat b,.strip .stat span{color:#fff}
 @media(max-width:760px){.hero-grid{grid-template-columns:1fr}.photo{order:-1;width:200px;height:200px;font-size:54px}}
+
+/* =====================================================================
+   MOBILE / PHONE RESPONSIVENESS
+   Everything below only applies at <=760px (phones / small tablets) and
+   <=420px (small phones). Desktop styles above are untouched.
+   ===================================================================== */
+
+/* Mobile-menu controls exist in the HTML but are hidden on desktop */
+.nav-toggle,.nav-btn{display:none}
+
+@media(max-width:760px){
+  :root{--gutter:20px}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:64px}
+  /* Safety net against sideways scrolling (clip, unlike hidden, keeps the sticky nav working) */
+  body{font-size:16px;line-height:1.65;overflow-x:clip;overflow-wrap:break-word}
+  img,svg{max-width:100%}
+  a,button,label,.btn{touch-action:manipulation}
+  .wrap{padding:0 var(--gutter)}
+
+  /* ---- Navigation: brand + "Menu" button, links drop down as a tap-friendly list ---- */
+  nav .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
+  nav b a{display:inline-flex;align-items:center;min-height:44px;white-space:nowrap}
+  .nav-toggle{display:block;position:absolute;width:1px;height:1px;min-height:0;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .nav-btn{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:15px;line-height:1;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:rgba(47,93,75,.12)}
+  .nav-toggle:checked + .nav-btn{border-color:var(--green);color:var(--green)}
+  .nav-toggle:focus-visible + .nav-btn{outline:3px solid var(--green);outline-offset:2px}
+  .nav-ic,.nav-ic:before,.nav-ic:after{display:block;width:18px;height:2px;background:currentColor;transition:transform .2s,background .2s}
+  .nav-ic{position:relative}
+  .nav-ic:before,.nav-ic:after{content:"";position:absolute;left:0}
+  .nav-ic:before{top:-6px}
+  .nav-ic:after{top:6px}
+  .nav-toggle:checked + .nav-btn .nav-ic{background:transparent}
+  .nav-toggle:checked + .nav-btn .nav-ic:before{top:0;transform:rotate(45deg)}
+  .nav-toggle:checked + .nav-btn .nav-ic:after{top:0;transform:rotate(-45deg)}
+  nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;flex-wrap:nowrap;gap:0;padding:4px var(--gutter) 8px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 14px 22px rgba(15,15,15,.10)}
+  .nav-toggle:checked ~ ul{display:flex}
+  nav li + li{border-top:1px solid #e6ebe8}
+  nav ul a{display:flex;align-items:center;min-height:48px;font-size:17px}
+  nav ul a[aria-current]{border-bottom:0;padding:0 0 0 12px;box-shadow:inset 3px 0 0 var(--green);font-weight:700}
+
+  /* ---- Typography & spacing ---- */
+  h1{font-size:clamp(30px,9vw,40px)}
+  h2{font-size:clamp(24px,7vw,30px)}
+  h3{font-size:18px}
+  main h2[style*="margin-top"]{margin-top:36px!important}
+  section{padding:40px 0}
+
+  /* ---- Hero / profile ---- */
+  .hero-top{padding:32px 0}
+  .hero-top h2{font-size:clamp(26px,7.4vw,34px);line-height:1.2}
+  .intro{padding:32px 0}
+  .hero-grid,.two{grid-template-columns:minmax(0,1fr)}
+  .hero-grid{gap:24px}
+  .role{font-size:17px;line-height:1.5}
+  .kw h3{font-size:20px}
+  .kw p{font-size:15px;line-height:1.6}
+  .photo.sm{margin:0 auto 20px}
+
+  /* ---- Buttons, chips & touch targets ---- */
+  .chips{gap:10px}
+  .chip{min-height:44px;padding:0 16px}
+  .btns{gap:10px;margin:20px 0}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;text-align:center}
+
+  /* ---- Stats ---- */
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px;margin:24px 0}
+  .stats .stat:last-child:nth-child(odd){grid-column:1/-1}
+  .stat b{font-size:28px}
+  .stat span{display:block;line-height:1.35;margin-top:2px}
+  .strip{padding:28px 0}
+
+  /* ---- Cards (research, publications, skills, explore) ---- */
+  .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+  .card{padding:18px}
+  .card p{line-height:1.6}
+  .two>div>br{display:none}
+  .two>div>.card{margin-bottom:14px}
+  .two>div>.card:last-child{margin-bottom:0}
+  .bar div{gap:12px}
+  .bar{margin-bottom:16px}
+
+  /* ---- Experience timeline ---- */
+  .tl{padding-left:20px}
+  .job{margin-bottom:28px}
+  .job:before{left:-27px}
+  .job h3{line-height:1.25}
+  .list{padding-left:18px}
+  .q{font-size:18px;padding-left:14px}
+
+  /* ---- Contact form (16px stops iOS zooming in on focus) ---- */
+  form{gap:12px}
+  input,textarea{font-size:16px;padding:12px 14px;min-height:48px;border-radius:0;-webkit-appearance:none;appearance:none}
+  textarea{height:160px;resize:vertical}
+  form .btn{min-height:48px}
+
+  /* ---- Footer ---- */
+  footer{padding:24px var(--gutter);line-height:1.5}
+  footer p:first-child{display:flex;justify-content:center;flex-wrap:wrap;margin:0 0 4px}
+  footer a{min-height:44px;margin:0;padding:0 14px}
+}
+
+@media(max-width:420px){
+  :root{--gutter:16px}
+  section{padding:32px 0}
+  .hero-top{padding:26px 0}
+  .intro{padding:28px 0}
+  .photo{width:168px;height:168px;font-size:48px}
+  .photo.sm{width:150px;height:150px;font-size:42px}
+  .card{padding:16px}
+  .tag{margin-bottom:12px}
+
+  /* chips share each row edge-to-edge */
+  .chips .chip{flex:1 1 auto;justify-content:center}
+
+  /* Primary button full width, secondary buttons side by side */
+  .btns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .btns .btn{padding:10px 8px}
+  .btns .btn.p:first-child{grid-column:1/-1}
+
+  .stats{gap:18px 12px}
+  .stat{padding-left:12px}
+  .stat b{font-size:26px}
+
+  .job:before{left:-27px}
+  .q{font-size:17px}
+  nav b a,nav b{font-size:17px}
+}
